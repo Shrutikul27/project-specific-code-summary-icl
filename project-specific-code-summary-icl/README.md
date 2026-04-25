@@ -29,7 +29,12 @@ project-specific-code-summary-icl/
 ├── data/
 │   ├── target_functions.csv           # 15 target Python functions
 │   ├── project_examples.csv           # Project-specific example pairs
-│   └── evaluation_labels.csv          # 30 manual evaluation labels
+│   ├── evaluation_labels.csv          # 30 manual evaluation labels
+│   ├── citation_counts_top100.csv     # Top 100 papers by citation count
+│   ├── search_strings.csv             # Literature search queries
+│   ├── above_knee_papers.csv          # 22 above-the-knee papers
+│   ├── thematic_classification.csv    # Theme coding for 22 papers
+│   └── venn_counts.csv                # Disjoint Venn region counts
 ├── prompts/
 │   ├── generic_prompt.txt             # Generic prompting template
 │   └── project_specific_prompt.txt    # Project-specific ICL template
@@ -40,18 +45,32 @@ project-specific-code-summary-icl/
 │   └── latex_tables.tex               # Generated LaTeX tables
 ├── scripts/
 │   ├── compute_results.py             # Compute result summary
+│   ├── compute_knee.py                # Knee analysis on citation curve
 │   ├── summarize_labels.py            # Detailed label breakdown
 │   ├── validate_artifacts.py          # Artifact integrity validation
 │   └── generate_latex_tables.py       # Generate LaTeX table snippets
 ├── baseline_reproducibility/
 │   ├── README.md                      # Baseline inspection documentation
 │   ├── baselines_config.json          # Baseline metadata
-│   ├── baseline_attempts.csv          # Inspection results
+│   ├── baseline_attempts.csv          # Reproduction results
 │   └── inspect_baselines.py           # Baseline inspection script
 └── docs/
     ├── artifact_report.md             # Artifact summary report
-    └── reproduction_instructions.md   # Step-by-step reproduction guide
+    ├── reproduction_instructions.md   # Step-by-step reproduction guide
+    ├── search_protocol.md             # Literature search strategy
+    └── baseline_reproduction_log.md   # Detailed baseline reproduction notes
 ```
+
+## Literature Review
+
+- **100 papers** ranked by citation count (`data/citation_counts_top100.csv`)
+- **Knee analysis** at rank 22, threshold 167 citations (`scripts/compute_knee.py`)
+- **22 above-the-knee papers** thematically classified into 4 groups:
+  - **P** (Project-Specific Context): 6 papers
+  - **I** (In-Context Learning & Prompting): 4 papers
+  - **M** (Code Summarization Methods): 19 papers
+  - **E** (Evaluation & Reliability): 6 papers
+- Full intersection P∩I∩M∩E = 0 (no paper covers all four themes)
 
 ## Dataset
 
@@ -120,19 +139,19 @@ RESULT SUMMARY
 
 ## Baseline Reproducibility
 
-The paper references three prior systems:
-1. **Ahmed and Devanbu 2022** — Few-shot training LLMs for code summarization
+The paper references three prior systems. All three were cloned and
+attempted:
+
+1. **Ahmed and Devanbu 2022** — Failed: `code-davinci-002` API deprecated
    ([repo](https://github.com/toufiqueparag/few_shot_code_summarization))
-2. **Ahmad et al. 2020** — NeuralCodeSum (Transformer-based)
+2. **Ahmad et al. 2020** — Failed: required Java dataset files missing
    ([repo](https://github.com/wasiahmad/NeuralCodeSum))
-3. **Yun et al. 2024** — P-CodeSum (project-specific ICL)
+3. **Yun et al. 2024** — Partial: scripts run but default data paths incorrect
    ([repo](https://github.com/Linshuhuai/P-CodeSum))
 
-These are treated as **reproducibility reference baselines**, not direct
-executable baselines. Our direct empirical baseline is Generic Prompting.
-All three repos have been identified as publicly available, but full
-reproduction (cloning, dependency setup, training/evaluation) has not yet
-been confirmed. See `baseline_reproducibility/README.md` for details.
+Our direct empirical baseline is Generic Prompting. See
+`baseline_reproducibility/README.md` and `docs/baseline_reproduction_log.md`
+for full details.
 
 ## Limitations
 

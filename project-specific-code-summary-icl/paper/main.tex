@@ -72,6 +72,36 @@ prompting and project-specific ICL on a curated set of functions, with manual
 evaluation labels, and provide a complete replication package.
 
 % ============================================================
+\section{Literature Search Strategy}
+\label{sec:literature-search}
+
+\subsection{Search Protocol}
+We searched Google Scholar using Publish or Perish with a broad query
+(\textit{``code summarization'' OR ``source code summarization'' OR ``code
+comment generation'' OR ``code documentation generation''}) and six refined
+queries targeting project-specific, few-shot, ICL, and evaluation aspects.
+We focused on top SE venues (ICSE, FSE, ASE, MSR, TSE, TOSEM) and related
+NLP/ML venues (ACL, EMNLP, NeurIPS), primarily since 2015.
+
+\subsection{Citation Ranking and Knee Analysis}
+We collected the top 100 papers by citation count and applied a knee analysis
+(maximum perpendicular distance method) to the citation curve. The knee
+occurred at rank~22, corresponding to a citation threshold of~167. The 22
+above-the-knee papers form our primary literature corpus.
+The complete 100-paper citation list and knee analysis data are included in
+the artifact repository.
+
+\subsection{Thematic Classification}
+We classified the 22 above-the-knee papers into four themes:
+\textbf{P}~(Project-Specific Context, 6~papers),
+\textbf{I}~(In-Context Learning and Prompting, 4~papers),
+\textbf{M}~(Code Summarization Methods, 19~papers), and
+\textbf{E}~(Evaluation and Reliability, 6~papers).
+The full intersection $P \cap I \cap M \cap E = 0$: no existing paper
+addresses all four themes simultaneously, defining the research gap our
+study targets.
+
+% ============================================================
 \section{Experimental Rig}
 \label{sec:experimental-rig}
 
@@ -204,26 +234,27 @@ of the evaluation, if not the generation step.
 \section{Baseline Reproducibility}
 \label{sec:baseline-reproducibility}
 
-We inspected three prior systems referenced in our study:
+We attempted to reproduce three prior systems referenced in our study:
 
 \begin{enumerate}
   \item \textbf{Ahmed and Devanbu 2022~\cite{ahmed2022fewshot}:}
-    Public repository found at
+    Repository at
     \url{https://github.com/toufiqueparag/few_shot_code_summarization}.
-    Repository contains dataset and scripts from the ASE-NIER paper.
-    Full reproduction still requires local verification of dependencies and
-    execution. Used as a conceptual and reproducibility reference baseline.
+    Repo cloned and environment set up successfully, but the script failed
+    at the API call because the original model \texttt{code-davinci-002}
+    is deprecated. \textbf{Status: failed unmodified.}
   \item \textbf{Ahmad et al.\ 2020 (NeuralCodeSum)~\cite{ahmad2020neuralcodesum}:}
-    Public repository at \url{https://github.com/wasiahmad/NeuralCodeSum}.
-    Full reproduction may require original datasets, dependency setup, and
-    model training/evaluation steps. Used as a supervised transformer
-    reproducibility reference.
+    Repository at \url{https://github.com/wasiahmad/NeuralCodeSum}.
+    Repo cloned, dependencies repaired, pipeline launched, but failed because
+    required Java dataset files were missing and the bundled download path
+    did not produce a valid archive. \textbf{Status: failed unmodified.}
   \item \textbf{Yun et al.\ 2024 (P-CodeSum)~\cite{yun2024pcodesum}:}
-    Public repository found at
+    Repository at
     \url{https://github.com/Linshuhuai/P-CodeSum}.
-    Full reproduction may require project-specific setup, model/API
-    configuration, and dataset preparation. Used as the closest
-    project-specific ICL reproducibility reference.
+    Repo installed successfully and scripts launched, but default
+    \texttt{train.sh}/\texttt{evaluate.sh} point to nonexistent data paths;
+    the repo contains alternate data directories and log files were created
+    successfully. \textbf{Status: partial; most promising runnable baseline.}
 \end{enumerate}
 
 Our direct empirical baseline is Generic Prompting. Prior systems are treated
@@ -260,7 +291,8 @@ are publicly available for replication.
 \section*{Replication Artifacts}
 
 All data, prompts, generated outputs, evaluation labels, analysis scripts,
-and baseline inspection materials are available at:
+literature review artifacts (100-paper citation list, knee analysis, thematic
+classification, Venn counts), and baseline reproduction notes are available at:
 
 \begin{center}
 % TODO: Replace <username> with your actual GitHub username

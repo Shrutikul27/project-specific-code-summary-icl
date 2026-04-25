@@ -91,9 +91,113 @@ Project-Specific ICL & 73.3 & 20.0 & 6.7 \\
 \toprule
 System & Repo Available & Status & Issue \\
 \midrule
-Ahmed and Devanbu 2022 Few-shot project-specific code summarization & Yes & repo found; inspect/run status pending & Repository contains dataset and scripts from the ASE-NIER paper; full reproduction still needs local verification \\
-Ahmad et al. 2020 NeuralCodeSum & Yes & repo found; inspect/run status pending & Full reproduction may require original datasets, dependency setup, and model training/evaluation steps \\
-Yun et al. 2024 P-CodeSum & Yes & repo found; inspect/run status pending & Full reproduction may require project-specific setup, model/API configuration, and dataset preparation \\
+Ahmed and Devanbu 2022 Few-shot project-specific code summarization & Yes & failed unmodified & Repo cloned, environment worked, script reached API call, then failed because code-davinci-002 is deprecated \\
+Ahmad et al. 2020 NeuralCodeSum & Yes & failed unmodified & Repo cloned, dependencies repaired, pipeline launched, then failed because required Java dataset files were missing and download path did not produce a valid archive \\
+Yun et al. 2024 P-CodeSum & Yes & partial & Repo installed successfully, scripts launched, but default train.sh/evaluate.sh point to nonexistent data paths; repo contains alternate data dirs; log files created successfully \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+
+
+% Table: Above-the-Knee Papers
+\begin{table*}[ht]
+\centering
+\caption{Top 22 Above-the-Knee Papers by Citation Count}
+\label{tab:above-knee}
+\begin{tabular}{clc}
+\toprule
+Rank & Title & Citations \\
+\midrule
+1 & Summarizing source code using a neural attention model & 1009 \\
+2 & Deep code comment generation & 922 \\
+3 & A transformer-based approach for source code summarization & 567 \\
+4 & Improving automatic source code summarization via deep reinforcement learning & 535 \\
+5 & On the use of automated text summarization techniques for summarizing source code & 527 \\
+6 & Improved code summarization via a graph neural network & 428 \\
+7 & Few-shot training LLMs for project-specific code-summarization & 424 \\
+8 & Summarizing source code with transferred API knowledge & 392 \\
+9 & Supporting program comprehension with source code summarization & 385 \\
+10 & Deep code comment generation with hybrid lexical and syntactical information & 354 \\
+11 & Retrieval-based neural source code summarization & 329 \\
+12 & Automatic documentation generation via source code summarization of method context & 322 \\
+13 & Retrieval augmented code generation and summarization & 302 \\
+14 & Code generation as a dual task of code summarization & 288 \\
+15 & Semantic similarity metrics for evaluating source code summarization & 271 \\
+16 & Improving automated source code summarization via an eye-tracking study of programmers & 271 \\
+17 & Large language models are few-shot summarizers: Multi-intent comment generation via in-context learning & 244 \\
+18 & Retrieval-augmented generation for code summarization via hybrid GNN & 236 \\
+19 & Automatic source code summarization of context for Java methods & 234 \\
+20 & Automatic semantic augmentation of language model prompts (for code summarization) & 229 \\
+21 & Evaluating source code summarization techniques: Replication and expansion & 179 \\
+22 & Recommendations for datasets for source code summarization & 167 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+
+% Table: Thematic Group Sizes
+\begin{table}[ht]
+\centering
+\caption{Thematic Group Sizes (22 Above-the-Knee Papers)}
+\label{tab:thematic-groups}
+\begin{tabular}{lc}
+\toprule
+Theme & Papers \\
+\midrule
+P: Project-Specific Context & 6 \\
+I: In-Context Learning \& Prompting & 4 \\
+M: Code Summarization Methods & 19 \\
+E: Evaluation \& Reliability & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+% Table: Venn Disjoint Region Counts
+\begin{table}[ht]
+\centering
+\caption{Disjoint Venn Region Counts for Thematic Classification}
+\label{tab:venn-counts}
+\begin{tabular}{lc}
+\toprule
+Region & Count \\
+\midrule
+Only P & 1 \\
+Only I & 0 \\
+Only M & 10 \\
+Only E & 0 \\
+P $\cap$ I only & 1 \\
+P $\cap$ M only & 2 \\
+P $\cap$ E only & 0 \\
+I $\cap$ M only & 1 \\
+I $\cap$ E only & 1 \\
+M $\cap$ E only & 4 \\
+P $\cap$ I $\cap$ M & 1 \\
+P $\cap$ I $\cap$ E & 0 \\
+P $\cap$ M $\cap$ E & 1 \\
+I $\cap$ M $\cap$ E & 0 \\
+P $\cap$ I $\cap$ M $\cap$ E & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+% Table: Reproduction Study Outcomes
+\begin{table*}[ht]
+\centering
+\caption{Baseline Reproduction Study Outcomes}
+\label{tab:reproduction-study}
+\begin{tabular}{lccll}
+\toprule
+System & Repo Found & Runs & Feasible & Decision \\
+\midrule
+Ahmed \& Devanbu 2022 & Yes & No & Maybe & Conceptual baseline; API deprecated \\
+Ahmad et al.\ 2020 (NeuralCodeSum) & Yes & No & Maybe & Supervised baseline; missing data \\
+Yun et al.\ 2024 (P-CodeSum) & Yes & Partial & Likely & Most promising runnable baseline \\
+\bottomrule
+\end{tabular}
+\end{table*}

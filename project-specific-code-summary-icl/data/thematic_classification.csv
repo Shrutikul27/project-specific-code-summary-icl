@@ -1,0 +1,23 @@
+title,project_context,in_context_learning,methods,evaluation_reliability,notes
+"Summarizing source code using a neural attention model",0,0,1,0,Only M: neural attention method
+"Deep code comment generation",0,0,1,0,Only M: deep learning method
+"A transformer-based approach for source code summarization",0,0,1,0,Only M: transformer-based method
+"Improving automatic source code summarization via deep reinforcement learning",0,0,1,0,Only M: reinforcement learning method
+"On the use of automated text summarization techniques for summarizing source code",0,0,1,0,Only M: text summarization applied to code
+"Improved code summarization via a graph neural network",0,0,1,0,Only M: GNN-based method
+"Few-shot training LLMs for project-specific code-summarization",1,1,1,0,"P ∩ I ∩ M: project-specific, few-shot ICL, method"
+"Summarizing source code with transferred API knowledge",1,0,1,0,P ∩ M: project API context + method
+"Supporting program comprehension with source code summarization",1,0,0,0,Only P: program comprehension / project-level understanding
+"Deep code comment generation with hybrid lexical and syntactical information",0,0,1,0,Only M: hybrid deep learning method
+"Retrieval-based neural source code summarization",0,0,1,0,Only M: retrieval-based method
+"Automatic documentation generation via source code summarization of method context",1,0,1,0,P ∩ M: method context + method
+"Retrieval augmented code generation and summarization",0,1,1,0,I ∩ M: retrieval-augmented generation (ICL-adjacent)
+"Code generation as a dual task of code summarization",0,0,1,0,Only M: dual-task learning method
+"Semantic similarity metrics for evaluating source code summarization",0,0,1,1,M ∩ E: evaluation metrics for summarization
+"Improving automated source code summarization via an eye-tracking study of programmers",0,0,1,1,M ∩ E: eye-tracking evaluation methodology
+"Large language models are few-shot summarizers: Multi-intent comment generation via in-context learning",0,1,0,1,I ∩ E: ICL approach + evaluation of LLM capabilities
+"Retrieval-augmented generation for code summarization via hybrid GNN",0,0,1,0,Only M: retrieval-augmented GNN method
+"Automatic source code summarization of context for Java methods",0,0,1,1,M ∩ E: context method + evaluation
+"Automatic semantic augmentation of language model prompts (for code summarization)",1,1,0,0,P ∩ I: project-specific prompt augmentation + prompting
+"Evaluating source code summarization techniques: Replication and expansion",0,0,1,1,M ∩ E: replication study evaluating methods
+"Recommendations for datasets for source code summarization",1,0,1,1,"P ∩ M ∩ E: dataset/project considerations, methods, evaluation"

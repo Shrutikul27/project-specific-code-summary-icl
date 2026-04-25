@@ -1,0 +1,16 @@
+region,count
+Only P,1
+Only I,0
+Only M,10
+Only E,0
+P ∩ I only,1
+P ∩ M only,2
+P ∩ E only,0
+I ∩ M only,1
+I ∩ E only,1
+M ∩ E only,4
+P ∩ I ∩ M,1
+P ∩ I ∩ E,0
+P ∩ M ∩ E,1
+I ∩ M ∩ E,0
+P ∩ I ∩ M ∩ E,0

@@ -8,6 +8,10 @@ Produces tables for:
   3. Result summary
   4. Label percentages
   5. Reproducibility baseline status
+  6. Top 22 above-the-knee papers
+  7. Thematic group sizes
+  8. Venn disjoint region counts
+  9. Reproduction study table
 
 Saves all tables to outputs/latex_tables.tex.
 
@@ -24,6 +28,9 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 LABELS_PATH = PROJECT_ROOT / "data" / "evaluation_labels.csv"
 TARGETS_PATH = PROJECT_ROOT / "data" / "target_functions.csv"
 BASELINES_PATH = PROJECT_ROOT / "baseline_reproducibility" / "baseline_attempts.csv"
+ABOVE_KNEE_PATH = PROJECT_ROOT / "data" / "above_knee_papers.csv"
+THEMATIC_PATH = PROJECT_ROOT / "data" / "thematic_classification.csv"
+VENN_PATH = PROJECT_ROOT / "data" / "venn_counts.csv"
 OUTPUT_PATH = PROJECT_ROOT / "outputs" / "latex_tables.tex"
 
 
@@ -177,12 +184,134 @@ def main():
     tables.append("")
     tables.append(generate_baseline_table(BASELINES_PATH))
 
+    # --- New literature review tables ---
+    if ABOVE_KNEE_PATH.exists():
+        tables.append("")
+        tables.append(generate_above_knee_table(ABOVE_KNEE_PATH))
+
+    if THEMATIC_PATH.exists():
+        tables.append("")
+        tables.append(generate_thematic_group_table(THEMATIC_PATH))
+
+    if VENN_PATH.exists():
+        tables.append("")
+        tables.append(generate_venn_table(VENN_PATH))
+
+    tables.append("")
+    tables.append(generate_reproduction_study_table(BASELINES_PATH))
+
     output = "\n\n".join(tables) + "\n"
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(output)
     print(f"LaTeX tables written to: {OUTPUT_PATH}")
-    print(f"Generated 5 table environments.")
+    table_count = sum(1 for t in tables if t.strip().startswith("% Table"))
+    print(f"Generated {table_count} table environments.")
+
+
+def generate_above_knee_table(path: Path) -> str:
+    """Table 6: Top 22 above-the-knee papers."""
+    df = pd.read_csv(path)
+    lines = []
+    lines.append("% Table: Above-the-Knee Papers")
+    lines.append("\\begin{table*}[ht]")
+    lines.append("\\centering")
+    lines.append("\\caption{Top 22 Above-the-Knee Papers by Citation Count}")
+    lines.append("\\label{tab:above-knee}")
+    lines.append("\\begin{tabular}{clc}")
+    lines.append("\\toprule")
+    lines.append("Rank & Title & Citations \\\\")
+    lines.append("\\midrule")
+    for _, row in df.iterrows():
+        rank = int(row["rank"])
+        title = str(row["title"]).replace("_", "\\_").replace("&", "\\&")
+        cites = int(row["citation_count"])
+        lines.append(f"{rank} & {title} & {cites} \\\\")
+    lines.append("\\bottomrule")
+    lines.append("\\end{tabular}")
+    lines.append("\\end{table*}")
+    return "\n".join(lines)
+
+
+def generate_thematic_group_table(path: Path) -> str:
+    """Table 7: Thematic group sizes."""
+    df = pd.read_csv(path)
+    lines = []
+    lines.append("% Table: Thematic Group Sizes")
+    lines.append("\\begin{table}[ht]")
+    lines.append("\\centering")
+    lines.append("\\caption{Thematic Group Sizes (22 Above-the-Knee Papers)}")
+    lines.append("\\label{tab:thematic-groups}")
+    lines.append("\\begin{tabular}{lc}")
+    lines.append("\\toprule")
+    lines.append("Theme & Papers \\\\")
+    lines.append("\\midrule")
+    themes = [
+        ("P: Project-Specific Context", "project_context"),
+        ("I: In-Context Learning \\& Prompting", "in_context_learning"),
+        ("M: Code Summarization Methods", "methods"),
+        ("E: Evaluation \\& Reliability", "evaluation_reliability"),
+    ]
+    for label, col in themes:
+        if col in df.columns:
+            count = int(df[col].sum())
+            lines.append(f"{label} & {count} \\\\")
+    lines.append("\\bottomrule")
+    lines.append("\\end{tabular}")
+    lines.append("\\end{table}")
+    return "\n".join(lines)
+
+
+def generate_venn_table(path: Path) -> str:
+    """Table 8: Venn disjoint region counts."""
+    df = pd.read_csv(path)
+    lines = []
+    lines.append("% Table: Venn Disjoint Region Counts")
+    lines.append("\\begin{table}[ht]")
+    lines.append("\\centering")
+    lines.append("\\caption{Disjoint Venn Region Counts for Thematic Classification}")
+    lines.append("\\label{tab:venn-counts}")
+    lines.append("\\begin{tabular}{lc}")
+    lines.append("\\toprule")
+    lines.append("Region & Count \\\\")
+    lines.append("\\midrule")
+    for _, row in df.iterrows():
+        region = str(row["region"]).replace("∩", "$\\cap$")
+        count = int(row["count"])
+        lines.append(f"{region} & {count} \\\\")
+    lines.append("\\bottomrule")
+    lines.append("\\end{tabular}")
+    lines.append("\\end{table}")
+    return "\n".join(lines)
+
+
+def generate_reproduction_study_table(baselines_path: Path) -> str:
+    """Table 9: Reproduction study outcomes."""
+    lines = []
+    lines.append("% Table: Reproduction Study Outcomes")
+    lines.append("\\begin{table*}[ht]")
+    lines.append("\\centering")
+    lines.append("\\caption{Baseline Reproduction Study Outcomes}")
+    lines.append("\\label{tab:reproduction-study}")
+    lines.append("\\begin{tabular}{lccll}")
+    lines.append("\\toprule")
+    lines.append("System & Repo Found & Runs & Feasible & Decision \\\\")
+    lines.append("\\midrule")
+    # Hardcoded from documented reproduction outcomes
+    entries = [
+        ("Ahmed \\& Devanbu 2022", "Yes", "No", "Maybe",
+         "Conceptual baseline; API deprecated"),
+        ("Ahmad et al.\\ 2020 (NeuralCodeSum)", "Yes", "No", "Maybe",
+         "Supervised baseline; missing data"),
+        ("Yun et al.\\ 2024 (P-CodeSum)", "Yes", "Partial", "Likely",
+         "Most promising runnable baseline"),
+    ]
+    for name, repo, runs, feasible, decision in entries:
+        lines.append(f"{name} & {repo} & {runs} & {feasible} & {decision} \\\\")
+    lines.append("\\bottomrule")
+    lines.append("\\end{tabular}")
+    lines.append("\\end{table*}")
+    return "\n".join(lines)
 
 
 if __name__ == "__main__":

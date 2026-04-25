@@ -27,9 +27,17 @@ of LLM-Generated Code Summaries?
 
 ### Scripts
 - `scripts/compute_results.py` — Reproduces the main result table.
+- `scripts/compute_knee.py` — Knee analysis on the citation curve.
 - `scripts/summarize_labels.py` — Detailed label breakdown and analysis.
 - `scripts/validate_artifacts.py` — Validates artifact integrity.
 - `scripts/generate_latex_tables.py` — Generates LaTeX tables for the paper.
+
+### Literature Review Data
+- `data/citation_counts_top100.csv` — Top 100 papers by citation count.
+- `data/search_strings.csv` — Literature search queries.
+- `data/above_knee_papers.csv` — 22 above-the-knee papers.
+- `data/thematic_classification.csv` — Thematic coding (P, I, M, E).
+- `data/venn_counts.csv` — Disjoint Venn region counts.
 
 ### Baseline Reproducibility
 - `baseline_reproducibility/` — Documentation and scripts for inspecting
@@ -70,8 +78,11 @@ This artifact repository supports the following paper sections:
 | Experimental Rig | `data/target_functions.csv`, `data/project_examples.csv`, `prompts/` |
 | What Was Seen | `outputs/generic_outputs.csv`, `outputs/project_specific_outputs.csv` |
 | Evaluation Rigor | `data/evaluation_labels.csv`, `scripts/validate_artifacts.py` |
+| Literature Search | `data/citation_counts_top100.csv`, `data/search_strings.csv`, `docs/search_protocol.md` |
+| Knee Analysis | `scripts/compute_knee.py`, `data/above_knee_papers.csv` |
+| Thematic Classification | `data/thematic_classification.csv`, `data/venn_counts.csv` |
 | Results | `scripts/compute_results.py`, `outputs/result_summary.csv` |
-| Reproducibility | `baseline_reproducibility/`, `scripts/validate_artifacts.py` |
+| Reproducibility | `baseline_reproducibility/`, `docs/baseline_reproduction_log.md` |
 | Replication Artifacts | This entire repository |
 
 ## Why Prior Baselines Are Reference Baselines
@@ -80,19 +91,15 @@ The paper's direct empirical baseline is **Generic Prompting**. Prior systems
 are cited as related work and inspected for reproducibility, but not executed
 as direct comparison baselines:
 
-1. **Ahmed and Devanbu 2022** — Repo found at
-   https://github.com/toufiqueparag/few_shot_code_summarization. Contains
-   dataset and scripts. Full reproduction needs local verification.
-2. **Ahmad et al. 2020 (NeuralCodeSum)** — Repo found at
-   https://github.com/wasiahmad/NeuralCodeSum. May require original datasets
-   and GPU for training.
-3. **Yun et al. 2024 (P-CodeSum)** — Repo found at
-   https://github.com/Linshuhuai/P-CodeSum. May require project-specific
-   setup and dataset preparation.
+1. **Ahmed and Devanbu 2022** — Repo cloned; failed because `code-davinci-002`
+   API is deprecated.
+2. **Ahmad et al. 2020 (NeuralCodeSum)** — Repo cloned; failed because required
+   Java dataset files were missing.
+3. **Yun et al. 2024 (P-CodeSum)** — Repo cloned; partial success. Scripts run
+   but default data paths are incorrect. Most promising runnable baseline.
 
-None have been confirmed as fully reproduced unless `baseline_attempts.csv`
-explicitly says so. This framing is honest and avoids overclaiming
-reproduction.
+See `baseline_reproducibility/baseline_attempts.csv` and
+`docs/baseline_reproduction_log.md` for full details.
 
 ## Remaining TODOs
 

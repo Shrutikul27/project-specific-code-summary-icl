@@ -1,0 +1,23 @@
+rank,title,authors,citation_count,above_knee,primary_theme,notes
+1,"Summarizing source code using a neural attention model","S Iyer, I Konstas, A Cheung et al.",1009,Yes,M,Neural attention-based method
+2,"Deep code comment generation","X Hu, G Li, X Xia, D Lo, Z Jin",922,Yes,M,Deep learning method
+3,"A transformer-based approach for source code summarization","W Ahmad, S Chakraborty, B Ray et al.",567,Yes,M,Transformer-based method (NeuralCodeSum)
+4,"Improving automatic source code summarization via deep reinforcement learning","Y Wan, Z Zhao, M Yang, G Xu, H Ying, J Wu et al.",535,Yes,M,Reinforcement learning method
+5,"On the use of automated text summarization techniques for summarizing source code","S Haiduc, J Aponte, L Moreno et al.",527,Yes,M,Text summarization techniques applied to code
+6,"Improved code summarization via a graph neural network","A LeClair, S Haque, L Wu, C McMillan",428,Yes,M,GNN-based method
+7,"Few-shot training LLMs for project-specific code-summarization","T Ahmed, P Devanbu",424,Yes,P,Project-specific + few-shot ICL + method
+8,"Summarizing source code with transferred API knowledge","X Hu, G Li, X Xia, D Lo, S Lu, Z Jin",392,Yes,M,Project API context + method
+9,"Supporting program comprehension with source code summarization","S Haiduc, J Aponte, A Marcus",385,Yes,P,Program comprehension / project-level
+10,"Deep code comment generation with hybrid lexical and syntactical information","X Hu, G Li, X Xia, D Lo, Z Jin",354,Yes,M,Hybrid deep learning method
+11,"Retrieval-based neural source code summarization","J Zhang, X Wang, H Zhang, H Sun, X Liu",329,Yes,M,Retrieval-based method
+12,"Automatic documentation generation via source code summarization of method context","PW McBurney, C McMillan",322,Yes,M,Method context + documentation generation
+13,"Retrieval augmented code generation and summarization","MR Parvez, W Ahmad, S Chakraborty et al.",302,Yes,M,Retrieval-augmented approach (ICL-adjacent)
+14,"Code generation as a dual task of code summarization","B Wei, G Li, X Xia, Z Fu, Z Jin",288,Yes,M,Dual-task learning method
+15,"Semantic similarity metrics for evaluating source code summarization","S Haque, Z Eberhart, A Bansal et al.",271,Yes,E,Evaluation metrics
+16,"Improving automated source code summarization via an eye-tracking study of programmers","P Rodeghero, C McMillan, PW McBurney et al.",271,Yes,E,Evaluation via eye-tracking
+17,"Large language models are few-shot summarizers: Multi-intent comment generation via in-context learning","M Geng, S Wang, D Dong, H Wang, G Li, Z Jin et al.",244,Yes,I,ICL + evaluation of LLM summarizers
+18,"Retrieval-augmented generation for code summarization via hybrid GNN","S Liu, Y Chen, X Xie, J Siow, Y Liu",236,Yes,M,Retrieval-augmented GNN method
+19,"Automatic source code summarization of context for Java methods","PW McBurney, C McMillan",234,Yes,M,Context-based method + evaluation
+20,"Automatic semantic augmentation of language model prompts (for code summarization)","T Ahmed, KS Pai, P Devanbu, E Barr",229,Yes,I,Project-specific prompt augmentation
+21,"Evaluating source code summarization techniques: Replication and expansion","BP Eddy, JA Robinson, NA Kraft et al.",179,Yes,E,Evaluation / replication study
+22,"Recommendations for datasets for source code summarization","A LeClair, C McMillan",167,Yes,E,Dataset recommendations / evaluation; knee threshold

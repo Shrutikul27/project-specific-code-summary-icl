@@ -7,10 +7,10 @@
       "paper_url": "https://arxiv.org/abs/2207.04237",
       "repo_url": "https://github.com/toufiqueparag/few_shot_code_summarization",
       "repo_available": "Yes",
-      "attempt_status": "repo found; inspect/run status pending",
-      "baseline_role": "conceptual and reproducibility baseline for few-shot project-specific code summarization",
-      "observed_issue": "Repository contains dataset and scripts from the ASE-NIER paper; full reproduction still needs local verification",
-      "decision": "Use as related work and reproducibility reference"
+      "attempt_status": "failed unmodified",
+      "baseline_role": "primary conceptual baseline",
+      "observed_issue": "Repo cloned, environment worked, script reached API call, then failed because code-davinci-002 is deprecated.",
+      "decision": "Keep as primary conceptual baseline and failed reproduction case."
     },
     {
       "id": "ahmad_2020_neuralcodesum",
@@ -19,10 +19,10 @@
       "paper_url": "",
       "repo_url": "https://github.com/wasiahmad/NeuralCodeSum",
       "repo_available": "Yes",
-      "attempt_status": "repo found; inspect/run status pending",
-      "baseline_role": "supervised transformer baseline and reproducibility reference",
-      "observed_issue": "Full reproduction may require original datasets, dependency setup, and model training/evaluation steps",
-      "decision": "Use as related work and reproducibility reference"
+      "attempt_status": "failed unmodified",
+      "baseline_role": "secondary supervised baseline",
+      "observed_issue": "Repo cloned, dependencies repaired, pipeline launched, then failed because required Java dataset files were missing and download path did not produce a valid archive.",
+      "decision": "Keep as secondary supervised baseline and failed reproduction case."
     },
     {
       "id": "yun_2024_pcodesum",
@@ -31,10 +31,10 @@
       "paper_url": "",
       "repo_url": "https://github.com/Linshuhuai/P-CodeSum",
       "repo_available": "Yes",
-      "attempt_status": "repo found; inspect/run status pending",
-      "baseline_role": "closest project-specific ICL related work and reproducibility reference",
-      "observed_issue": "Full reproduction may require project-specific setup, model/API configuration, and dataset preparation",
-      "decision": "Use as related work and reproducibility reference"
+      "attempt_status": "partial",
+      "baseline_role": "closest project-specific ICL related work",
+      "observed_issue": "Repo installed successfully, scripts launched, but default train.sh/evaluate.sh point to nonexistent data paths; repo contains alternate data dirs; log files created successfully.",
+      "decision": "Keep as most promising runnable baseline."
     }
   ]
 }

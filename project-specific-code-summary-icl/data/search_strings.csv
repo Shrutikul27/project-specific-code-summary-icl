@@ -1,0 +1,8 @@
+search_id,query_string,scope,notes
+S1,"""code summarization"" OR ""source code summarization"" OR ""code comment generation"" OR ""code documentation generation""",broad,Primary broad query covering the main topic area
+S2,"""project-specific code summarization""",refined,Targeted query for project-specific approaches
+S3,"""few-shot code summarization""",refined,Targeted query for few-shot learning approaches
+S4,"""code summarization in-context learning""",refined,Targeted query for ICL-based approaches
+S5,"""project context code summarization llm""",refined,Targeted query combining project context with LLMs
+S6,"""code summarization reliability""",refined,Targeted query for reliability-focused work
+S7,"""code summarization evaluation""",refined,Targeted query for evaluation methodology work
