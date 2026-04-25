@@ -1,0 +1,16 @@
+function_id,repository,module,target_function,function_type,source_url
+F01,requests,requests.utils,requote_uri,utility,https://github.com/psf/requests/blob/main/src/requests/utils.py
+F02,requests,requests.utils,get_encoding_from_headers,utility,https://github.com/psf/requests/blob/main/src/requests/utils.py
+F03,requests,requests.utils,select_proxy,utility,https://github.com/psf/requests/blob/main/src/requests/utils.py
+F04,requests,requests.sessions,merge_setting,helper,https://github.com/psf/requests/blob/main/src/requests/sessions.py
+F05,requests,requests.models,request_url,property,https://github.com/psf/requests/blob/main/src/requests/models.py
+F06,pandas,pandas.core.common,flatten,utility,https://github.com/pandas-dev/pandas/blob/main/pandas/core/common.py
+F07,pandas,pandas.api.types,is_list_like,type-check,https://github.com/pandas-dev/pandas/blob/main/pandas/api/types/__init__.py
+F08,pandas,pandas.core.algorithms,unique,data-processing,https://github.com/pandas-dev/pandas/blob/main/pandas/core/algorithms.py
+F09,pandas,pandas.core.reshape.concat,concat,data-processing,https://github.com/pandas-dev/pandas/blob/main/pandas/core/reshape/concat.py
+F10,pandas,pandas.core.tools.datetimes,to_datetime,conversion,https://github.com/pandas-dev/pandas/blob/main/pandas/core/tools/datetimes.py
+F11,scikit-learn,sklearn.utils.validation,check_array,validation,https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/utils/validation.py
+F12,scikit-learn,sklearn.utils.validation,check_X_y,validation,https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/utils/validation.py
+F13,scikit-learn,sklearn.model_selection,train_test_split,model-selection,https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/model_selection/_split.py
+F14,scikit-learn,sklearn.metrics.pairwise,cosine_similarity,metric,https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/metrics/pairwise.py
+F15,scikit-learn,sklearn.preprocessing,normalize,preprocessing,https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/preprocessing/_data.py

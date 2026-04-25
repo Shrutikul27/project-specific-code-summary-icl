@@ -1,0 +1,283 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+
+\title{Does Project-Specific In-Context Learning Improve the Reliability of LLM-Generated Code Summaries?}
+
+% TODO: Replace with actual author name(s) and affiliation(s)
+\author{
+  \IEEEauthorblockN{Author Name}
+  \IEEEauthorblockA{Affiliation\\Email}
+}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Large language models (LLMs) can generate natural-language summaries of source
+code, but generic prompting often produces summaries that are vague or
+inaccurate. We investigate whether \emph{project-specific in-context learning}
+(ICL)---providing the LLM with example function--summary pairs drawn from the
+same project---improves summary reliability. In a small-scale exploratory study
+covering 15~Python functions from three open-source repositories (Requests,
+pandas, scikit-learn), we compare generic prompting against project-specific
+ICL and manually label each generated summary as \textsc{Correct},
+\textsc{Partial}, or \textsc{Incorrect}. Project-specific ICL achieved a 73.3\%
+correctness rate compared to 46.7\% for generic prompting, and reduced the
+incorrect-summary rate from 26.7\% to 6.7\%. While the sample size limits
+statistical generalizability, the results suggest that grounding LLM prompts in
+project-specific context is a promising direction for more reliable automated
+code summarization. All data, prompts, outputs, evaluation labels, and scripts
+are publicly available for replication.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:introduction}
+
+Automated code summarization aims to generate concise natural-language
+descriptions of source code. Recent advances in large language models (LLMs)
+have made it possible to generate plausible code summaries with minimal
+task-specific training~\cite{brown2020language}. However, generic prompting
+approaches---where the LLM receives only a summarization instruction and the
+target function---often produce summaries that are semantically inaccurate or
+too generic to be useful.
+
+Project-specific in-context learning (ICL) provides the LLM with example
+function--summary pairs from the same project as the target function. The
+hypothesis is that project-specific context helps the LLM align its output
+with the project's conventions, vocabulary, and behavioral patterns.
+
+\textbf{Research Question:} Does project-specific in-context learning improve
+the reliability of LLM-generated code summaries compared to generic prompting?
+
+% ============================================================
+\section{Related Work}
+\label{sec:related-work}
+
+Ahmed and Devanbu~\cite{ahmed2022fewshot} explored few-shot training of LLMs
+for project-specific code summarization, finding that project-specific examples
+can improve summary quality. Ahmad et al.~\cite{ahmad2020neuralcodesum}
+proposed NeuralCodeSum, a Transformer-based approach trained on large corpora
+of code--summary pairs. Yun et al.~\cite{yun2024pcodesum} introduced
+P-CodeSum, which uses in-context learning for project-specific summarization.
+
+Our work differs in that we conduct a controlled comparison between generic
+prompting and project-specific ICL on a curated set of functions, with manual
+evaluation labels, and provide a complete replication package.
+
+% ============================================================
+\section{Experimental Rig}
+\label{sec:experimental-rig}
+
+\subsection{Dataset}
+We selected 15~Python functions from three widely-used open-source
+repositories: Requests~\cite{requests}, pandas~\cite{pandas}, and
+scikit-learn~\cite{scikitlearn}. Each repository contributes 5~functions
+spanning utility, data-processing, validation, and conversion categories.
+Table~\ref{tab:dataset-composition} summarizes the dataset composition.
+
+% Include generated table from outputs/latex_tables.tex
+% \input{../outputs/latex_tables.tex}  % Uncomment when integrating
+
+\begin{table}[ht]
+\centering
+\caption{Dataset Composition by Repository}
+\label{tab:dataset-composition}
+\begin{tabular}{lcc}
+\toprule
+Repository & Functions & Proportion \\
+\midrule
+requests & 5 & 33.3\% \\
+pandas & 5 & 33.3\% \\
+scikit-learn & 5 & 33.3\% \\
+\midrule
+\textbf{Total} & \textbf{15} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Prompting Methods}
+We compare two prompting strategies:
+
+\begin{enumerate}
+  \item \textbf{Generic Prompting:} A zero-shot prompt containing only a
+    summarization instruction, the target function code, and a warning not to
+    hallucinate unsupported behavior.
+  \item \textbf{Project-Specific ICL:} A few-shot prompt containing 2--3
+    example function--summary pairs from the same repository as the target
+    function, followed by the target function code and the same instructions.
+\end{enumerate}
+
+\subsection{Evaluation}
+Each of the 30~generated summaries (15~per method) was manually labeled as:
+\begin{itemize}
+  \item \textbf{Correct:} The summary accurately describes the function's
+    behavior.
+  \item \textbf{Partial:} The summary is partially accurate but omits
+    important behavior or includes minor inaccuracies.
+  \item \textbf{Incorrect:} The summary contains a material error or
+    describes behavior the function does not exhibit.
+\end{itemize}
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+
+Table~\ref{tab:result-summary} presents the evaluation results.
+
+\begin{table}[ht]
+\centering
+\caption{Summary of Evaluation Results}
+\label{tab:result-summary}
+\begin{tabular}{lccccc}
+\toprule
+Method & Correct & Partial & Incorrect & Total & Correctness Rate \\
+\midrule
+Generic Prompting & 7 & 4 & 4 & 15 & 46.7\% \\
+Project-Specific ICL & 11 & 3 & 1 & 15 & 73.3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Project-specific ICL achieved a correctness rate of 73.3\%, compared to 46.7\%
+for generic prompting---an improvement of 26.6~percentage points. The
+incorrect-summary rate dropped from 26.7\% (4/15) to 6.7\% (1/15).
+
+\subsection{What Was Seen}
+Generic prompting tended to produce summaries that were either too vague
+(leading to Partial labels) or that confused similar-sounding operations
+(leading to Incorrect labels). For example, the generic summary for
+\texttt{normalize} confused normalization with standardization, and the summary
+for \texttt{unique} incorrectly described a set-based implementation.
+
+Project-specific ICL summaries were more aligned with each project's vocabulary
+and conventions. The ICL examples appeared to help the LLM distinguish between
+closely related operations (e.g., normalization vs.\ standardization in
+scikit-learn).
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Results and Implications}
+The improvement from 46.7\% to 73.3\% correctness suggests that project-specific
+context provides meaningful grounding for LLM-generated summaries. The reduction
+in incorrect summaries (from 4 to 1) is particularly encouraging, as incorrect
+summaries pose a greater risk than partial ones in practice.
+
+These results are consistent with prior findings by Ahmed and
+Devanbu~\cite{ahmed2022fewshot} and Yun et al.~\cite{yun2024pcodesum}, who
+also found that project-specific context improves code summarization quality.
+
+\subsection{Threats to Validity}
+\label{sec:validity}
+
+\textbf{Internal Validity.}
+Manual labeling is inherently subjective. Different annotators may assign
+different labels to the same summary. We do not report inter-rater reliability
+because the study used a single annotator. Future work should employ multiple
+annotators and report agreement metrics.
+
+\textbf{External Validity.}
+The study covers only 15~functions from 3~Python repositories. Results may not
+generalize to other languages, projects, or function types. The small sample
+size precludes robust statistical significance testing.
+
+\textbf{Construct Validity.}
+The three-level labeling scheme (Correct, Partial, Incorrect) is coarse.
+Finer-grained evaluation metrics (e.g., semantic similarity scores) could
+provide additional insight.
+
+\textbf{Reproducibility.}
+Generated summaries depend on the specific LLM, its version, and API
+parameters at the time of generation. Results may differ with different
+models or API versions. All artifacts are provided to support replication
+of the evaluation, if not the generation step.
+
+% ============================================================
+\section{Baseline Reproducibility}
+\label{sec:baseline-reproducibility}
+
+We inspected three prior systems referenced in our study:
+
+\begin{enumerate}
+  \item \textbf{Ahmed and Devanbu 2022~\cite{ahmed2022fewshot}:}
+    Public repository found at
+    \url{https://github.com/toufiqueparag/few_shot_code_summarization}.
+    Repository contains dataset and scripts from the ASE-NIER paper.
+    Full reproduction still requires local verification of dependencies and
+    execution. Used as a conceptual and reproducibility reference baseline.
+  \item \textbf{Ahmad et al.\ 2020 (NeuralCodeSum)~\cite{ahmad2020neuralcodesum}:}
+    Public repository at \url{https://github.com/wasiahmad/NeuralCodeSum}.
+    Full reproduction may require original datasets, dependency setup, and
+    model training/evaluation steps. Used as a supervised transformer
+    reproducibility reference.
+  \item \textbf{Yun et al.\ 2024 (P-CodeSum)~\cite{yun2024pcodesum}:}
+    Public repository found at
+    \url{https://github.com/Linshuhuai/P-CodeSum}.
+    Full reproduction may require project-specific setup, model/API
+    configuration, and dataset preparation. Used as the closest
+    project-specific ICL reproducibility reference.
+\end{enumerate}
+
+Our direct empirical baseline is Generic Prompting. Prior systems are treated
+as reproducibility reference baselines and are documented in the artifact
+repository.
+
+% ============================================================
+\section{Future Work}
+\label{sec:future-work}
+
+\begin{itemize}
+  \item Scale the study to more functions, repositories, and programming
+    languages.
+  \item Employ multiple annotators and report inter-rater agreement.
+  \item Compare against automated metrics (BLEU, ROUGE, BERTScore).
+  \item Investigate how the number and quality of ICL examples affect
+    summary reliability.
+  \item Evaluate with multiple LLMs to assess generalizability across models.
+\end{itemize}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this exploratory study, project-specific in-context learning improved the
+correctness rate of LLM-generated code summaries from 46.7\% to 73.3\% and
+reduced the incorrect-summary rate from 26.7\% to 6.7\%. While the small
+sample size limits statistical generalizability, the results suggest that
+grounding LLM prompts in project-specific context is a promising direction
+for improving the reliability of automated code summarization. All artifacts
+are publicly available for replication.
+
+% ============================================================
+\section*{Replication Artifacts}
+
+All data, prompts, generated outputs, evaluation labels, analysis scripts,
+and baseline inspection materials are available at:
+
+\begin{center}
+% TODO: Replace <username> with your actual GitHub username
+\url{https://github.com/<username>/project-specific-code-summary-icl}
+\end{center}
+
+To reproduce the result tables:
+\begin{verbatim}
+pip install -r requirements.txt
+python scripts/validate_artifacts.py
+python scripts/compute_results.py
+python scripts/summarize_labels.py
+python scripts/generate_latex_tables.py
+\end{verbatim}
+
+% ============================================================
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

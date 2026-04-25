@@ -1,0 +1,99 @@
+% Table: Dataset Composition
+\begin{table}[ht]
+\centering
+\caption{Dataset Composition by Repository}
+\label{tab:dataset-composition}
+\begin{tabular}{lcc}
+\toprule
+Repository & Functions & Proportion \\
+\midrule
+requests & 5 & 33.3\% \\
+pandas & 5 & 33.3\% \\
+scikit-learn & 5 & 33.3\% \\
+\midrule
+\textbf{Total} & \textbf{15} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+% Table: Target Functions
+\begin{table}[ht]
+\centering
+\caption{Target Functions Used in the Study}
+\label{tab:target-functions}
+\begin{tabular}{llll}
+\toprule
+ID & Repository & Module & Function \\
+\midrule
+F01 & requests & \texttt{requests.utils} & \texttt{requote\_uri} \\
+F02 & requests & \texttt{requests.utils} & \texttt{get\_encoding\_from\_headers} \\
+F03 & requests & \texttt{requests.utils} & \texttt{select\_proxy} \\
+F04 & requests & \texttt{requests.sessions} & \texttt{merge\_setting} \\
+F05 & requests & \texttt{requests.models} & \texttt{request\_url} \\
+F06 & pandas & \texttt{pandas.core.common} & \texttt{flatten} \\
+F07 & pandas & \texttt{pandas.api.types} & \texttt{is\_list\_like} \\
+F08 & pandas & \texttt{pandas.core.algorithms} & \texttt{unique} \\
+F09 & pandas & \texttt{pandas.core.reshape.concat} & \texttt{concat} \\
+F10 & pandas & \texttt{pandas.core.tools.datetimes} & \texttt{to\_datetime} \\
+F11 & scikit-learn & \texttt{sklearn.utils.validation} & \texttt{check\_array} \\
+F12 & scikit-learn & \texttt{sklearn.utils.validation} & \texttt{check\_X\_y} \\
+F13 & scikit-learn & \texttt{sklearn.model\_selection} & \texttt{train\_test\_split} \\
+F14 & scikit-learn & \texttt{sklearn.metrics.pairwise} & \texttt{cosine\_similarity} \\
+F15 & scikit-learn & \texttt{sklearn.preprocessing} & \texttt{normalize} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+% Table: Result Summary
+\begin{table}[ht]
+\centering
+\caption{Summary of Evaluation Results}
+\label{tab:result-summary}
+\begin{tabular}{lccccc}
+\toprule
+Method & Correct & Partial & Incorrect & Total & Correctness Rate \\
+\midrule
+Generic Prompting & 7 & 4 & 4 & 15 & 46.7\% \\
+Project-Specific ICL & 11 & 3 & 1 & 15 & 73.3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+% Table: Label Percentages
+\begin{table}[ht]
+\centering
+\caption{Label Distribution (\%) by Method}
+\label{tab:label-percentages}
+\begin{tabular}{lccc}
+\toprule
+Method & Correct (\%) & Partial (\%) & Incorrect (\%) \\
+\midrule
+Generic Prompting & 46.7 & 26.7 & 26.7 \\
+Project-Specific ICL & 73.3 & 20.0 & 6.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+% Table: Reproducibility Baseline Status
+\begin{table}[ht]
+\centering
+\caption{Reproducibility Status of Referenced Baseline Systems}
+\label{tab:baseline-status}
+\begin{tabular}{llll}
+\toprule
+System & Repo Available & Status & Issue \\
+\midrule
+Ahmed and Devanbu 2022 Few-shot project-specific code summarization & Yes & repo found; inspect/run status pending & Repository contains dataset and scripts from the ASE-NIER paper; full reproduction still needs local verification \\
+Ahmad et al. 2020 NeuralCodeSum & Yes & repo found; inspect/run status pending & Full reproduction may require original datasets, dependency setup, and model training/evaluation steps \\
+Yun et al. 2024 P-CodeSum & Yes & repo found; inspect/run status pending & Full reproduction may require project-specific setup, model/API configuration, and dataset preparation \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,42 @@
+You are an expert software engineer. Your task is to generate a concise,
+accurate one-sentence summary of a Python function from the {repository} project.
+
+Below are example functions and their summaries from the same project.
+Use these examples to understand the project's conventions, naming style,
+and vocabulary. Your summary should follow a similar style.
+
+--- Example 1 ---
+Function:
+{example_1_code}
+
+Summary:
+{example_1_summary}
+
+--- Example 2 ---
+Function:
+{example_2_code}
+
+Summary:
+{example_2_summary}
+
+--- Example 3 ---
+Function:
+{example_3_code}
+
+Summary:
+{example_3_summary}
+
+--- Target Function ---
+Now summarize the following function from the same project.
+
+Rules:
+- Describe what the function does, not how it does it.
+- Do not hallucinate behavior that is not supported by the code.
+- Do not mention implementation details unless they are essential to the function's purpose.
+- Keep the summary to one or two sentences.
+- Use vocabulary and phrasing consistent with the examples above.
+
+Function:
+{target_function_code}
+
+Summary:

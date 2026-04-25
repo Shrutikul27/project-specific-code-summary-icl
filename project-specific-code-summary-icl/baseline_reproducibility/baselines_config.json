@@ -1,0 +1,40 @@
+{
+  "baselines": [
+    {
+      "id": "ahmed_devanbu_2022",
+      "paper_or_system": "Ahmed and Devanbu 2022 Few-shot project-specific code summarization",
+      "full_citation": "T. Ahmed and P. Devanbu, 'Few-shot training LLMs for project-specific code summarization,' ASE 2022.",
+      "paper_url": "https://arxiv.org/abs/2207.04237",
+      "repo_url": "https://github.com/toufiqueparag/few_shot_code_summarization",
+      "repo_available": "Yes",
+      "attempt_status": "repo found; inspect/run status pending",
+      "baseline_role": "conceptual and reproducibility baseline for few-shot project-specific code summarization",
+      "observed_issue": "Repository contains dataset and scripts from the ASE-NIER paper; full reproduction still needs local verification",
+      "decision": "Use as related work and reproducibility reference"
+    },
+    {
+      "id": "ahmad_2020_neuralcodesum",
+      "paper_or_system": "Ahmad et al. 2020 NeuralCodeSum",
+      "full_citation": "W. U. Ahmad, S. Chakraborty, B. Ray, and K.-W. Chang, 'A Transformer-based approach for source code summarization,' ACL 2020.",
+      "paper_url": "",
+      "repo_url": "https://github.com/wasiahmad/NeuralCodeSum",
+      "repo_available": "Yes",
+      "attempt_status": "repo found; inspect/run status pending",
+      "baseline_role": "supervised transformer baseline and reproducibility reference",
+      "observed_issue": "Full reproduction may require original datasets, dependency setup, and model training/evaluation steps",
+      "decision": "Use as related work and reproducibility reference"
+    },
+    {
+      "id": "yun_2024_pcodesum",
+      "paper_or_system": "Yun et al. 2024 P-CodeSum",
+      "full_citation": "S. Yun et al., 'P-CodeSum: Project-specific code summarization with in-context learning,' 2024.",
+      "paper_url": "",
+      "repo_url": "https://github.com/Linshuhuai/P-CodeSum",
+      "repo_available": "Yes",
+      "attempt_status": "repo found; inspect/run status pending",
+      "baseline_role": "closest project-specific ICL related work and reproducibility reference",
+      "observed_issue": "Full reproduction may require project-specific setup, model/API configuration, and dataset preparation",
+      "decision": "Use as related work and reproducibility reference"
+    }
+  ]
+}

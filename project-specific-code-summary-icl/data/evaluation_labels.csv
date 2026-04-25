@@ -1,0 +1,31 @@
+function_id,repository,target_function,method,label,notes
+F01,requests,requote_uri,Generic Prompting,Correct,Summary accurately describes re-quoting behavior for URIs.
+F02,requests,get_encoding_from_headers,Generic Prompting,Correct,Summary correctly identifies encoding extraction from Content-Type headers.
+F03,requests,select_proxy,Generic Prompting,Partial,Summary mentions proxy selection but omits handling of NO_PROXY environment variable.
+F04,requests,merge_setting,Generic Prompting,Incorrect,Summary conflates session-level and request-level merging; describes incorrect override direction.
+F05,requests,request_url,Generic Prompting,Correct,Summary correctly describes URL property reconstruction.
+F06,pandas,flatten,Generic Prompting,Partial,Summary describes flattening but misses that it yields individual elements from nested iterables.
+F07,pandas,is_list_like,Generic Prompting,Correct,Summary correctly identifies list-like type checking.
+F08,pandas,unique,Generic Prompting,Incorrect,Summary claims deduplication via set; actual implementation preserves order via hash table.
+F09,pandas,concat,Generic Prompting,Partial,Summary describes concatenation but omits axis parameter and key-based hierarchical indexing.
+F10,pandas,to_datetime,Generic Prompting,Incorrect,Summary oversimplifies conversion; misses format inference and error-handling modes.
+F11,scikit-learn,check_array,Generic Prompting,Correct,Summary correctly describes input array validation and conversion.
+F12,scikit-learn,check_X_y,Generic Prompting,Correct,Summary accurately describes joint validation of features and target arrays.
+F13,scikit-learn,train_test_split,Generic Prompting,Correct,Summary correctly describes splitting arrays into train and test subsets.
+F14,scikit-learn,cosine_similarity,Generic Prompting,Partial,Summary describes cosine computation but omits sparse matrix support.
+F15,scikit-learn,normalize,Generic Prompting,Incorrect,Summary confuses normalization with standardization (zero-mean scaling).
+F01,requests,requote_uri,Project-Specific ICL,Correct,Summary accurately describes re-quoting of URIs while preserving already-encoded characters.
+F02,requests,get_encoding_from_headers,Project-Specific ICL,Correct,Summary correctly identifies encoding extraction from Content-Type header using cgi module.
+F03,requests,select_proxy,Project-Specific ICL,Correct,Summary describes proxy selection from a proxies dictionary based on the URL scheme.
+F04,requests,merge_setting,Project-Specific ICL,Partial,Summary describes merging but does not fully specify precedence of request-level over session-level settings.
+F05,requests,request_url,Project-Specific ICL,Correct,Summary correctly describes URL construction for the prepared request.
+F06,pandas,flatten,Project-Specific ICL,Correct,Summary accurately describes recursive flattening of nested iterables yielding individual elements.
+F07,pandas,is_list_like,Project-Specific ICL,Correct,Summary correctly identifies list-like type checking including optional allow_sets parameter.
+F08,pandas,unique,Project-Specific ICL,Correct,Summary correctly describes order-preserving deduplication using hash table internally.
+F09,pandas,concat,Project-Specific ICL,Partial,Summary describes concatenation along an axis but omits join parameter behavior.
+F10,pandas,to_datetime,Project-Specific ICL,Correct,Summary accurately describes conversion with format inference and error-handling modes.
+F11,scikit-learn,check_array,Project-Specific ICL,Correct,Summary correctly describes validation with dtype enforcement and sparse matrix acceptance.
+F12,scikit-learn,check_X_y,Project-Specific ICL,Partial,Summary describes joint validation but omits multi-output support parameter.
+F13,scikit-learn,train_test_split,Project-Specific ICL,Correct,Summary correctly describes stratified splitting with random state control.
+F14,scikit-learn,cosine_similarity,Project-Specific ICL,Correct,Summary describes cosine similarity computation including sparse matrix support.
+F15,scikit-learn,normalize,Project-Specific ICL,Incorrect,Summary describes L2 normalization but incorrectly states it modifies the input array in-place by default.

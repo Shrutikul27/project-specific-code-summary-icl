@@ -1,0 +1,13 @@
+You are an expert software engineer. Your task is to generate a concise,
+accurate one-sentence summary of the following Python function.
+
+Rules:
+- Describe what the function does, not how it does it.
+- Do not hallucinate behavior that is not supported by the code.
+- Do not mention implementation details unless they are essential to the function's purpose.
+- Keep the summary to one or two sentences.
+
+Function:
+{target_function_code}
+
+Summary:

@@ -1,0 +1,10 @@
+example_id,repository,example_function,example_summary
+EX01,requests,iter_slices,"Iterates over slices of a string, yielding chunks of the specified size."
+EX02,requests,to_key_val_list,"Takes an object and returns a list of (key, value) pairs. If the input is already a list of pairs, it is returned as-is."
+EX03,requests,parse_header_links,"Parses header link fields into a list of dictionaries, each containing attributes from a single link-value."
+EX04,pandas,maybe_convert_platform_interval,"Converts platform-specific interval bounds to a consistent internal representation."
+EX05,pandas,is_bool_indexer,"Checks whether the provided key is a boolean indexer, returning True if it is an array-like of booleans."
+EX06,pandas,ensure_index,"Ensures the input is returned as a pandas Index object, converting from a list or array if necessary."
+EX07,scikit-learn,check_is_fitted,"Validates that an estimator has been fitted by checking for the presence of fitted attributes."
+EX08,scikit-learn,check_random_state,"Turns a seed or RandomState instance into a numpy RandomState object suitable for reproducible random sampling."
+EX09,scikit-learn,safe_indexing,"Indexes into an array or dataframe using the given indices, supporting both integer and boolean indexing."
