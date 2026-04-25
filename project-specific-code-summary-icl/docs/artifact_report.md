@@ -101,11 +101,4 @@ as direct comparison baselines:
 See `baseline_reproducibility/baseline_attempts.csv` and
 `docs/baseline_reproduction_log.md` for full details.
 
-## Remaining TODOs
 
-1. **GitHub URL in paper:** Replace `<username>` in `paper/main.tex` with
-   the actual GitHub username after the repo is published.
-2. **Author info:** Update author name(s) and affiliation(s) in
-   `paper/main.tex` if provided.
-3. **Baseline verification:** After cloning and inspecting baseline repos
-   locally, update `baseline_attempts.csv` with confirmed run statuses.
